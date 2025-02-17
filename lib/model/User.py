@@ -6,7 +6,7 @@ class User:
         self.timeshift = timeshift
 
     def get_first_letter(self):
-        return self.name[0]
+        return self.name[0].lower()
 
     def get_timeshift(self):
         return self.timeshift

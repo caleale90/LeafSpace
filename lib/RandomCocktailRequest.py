@@ -1,10 +1,11 @@
+from lib.RandomDrinkRequest import RandomDrinkRequest
 from lib.api.CocktailApiRequest import CocktailApiRequest
 from lib.builder.CocktailBuilder import CocktailBuilder
 
 
-class RandomCocktailRequest:
+class RandomCocktailRequest(RandomDrinkRequest):
 
-    def get_random_cocktail(self):
+    def get_random(self):
         response = CocktailApiRequest("https://www.thecocktaildb.com/api/json/v1/1/random.php").call_api()
         return self.build_cocktail(response.json())
 

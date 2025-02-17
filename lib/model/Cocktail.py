@@ -1,7 +1,7 @@
-import json
+from lib.model.Drink import Drink
 
 
-class Cocktail:
+class Cocktail(Drink):
 
     def __init__(self, name, tagline, instructions, ingredients):
         self.name = name
@@ -16,6 +16,3 @@ class Cocktail:
             "instructions": self.instructions,
             "ingredients": self.ingredients
         }
-
-    def __str__(self):
-        return json.dumps(self.to_dict())

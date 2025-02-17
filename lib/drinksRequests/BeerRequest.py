@@ -1,10 +1,10 @@
 import json
 
-from lib.RandomDrinkRequest import RandomDrinkRequest
+from lib.drinksRequests.DrinkRequest import DrinkRequest
 from lib.builder.BeerBuilder import BeerBuilder
 
 
-class RandomBeerRequest(RandomDrinkRequest):
+class BeerRequest(DrinkRequest):
 
     def api_call(self):
         # response = BeerApiRequest("https://api.sampleapis.com/beers/ale").call_api()

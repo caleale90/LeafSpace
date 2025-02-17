@@ -1,4 +1,4 @@
-class RandomDrinkRequest:
+class DrinkRequest:
 
     def get_random(self):
         response = self.api_call()

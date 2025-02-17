@@ -1,9 +1,9 @@
-from lib.RandomDrinkRequest import RandomDrinkRequest
+from lib.drinksRequests.DrinkRequest import DrinkRequest
 from lib.api.CocktailApiRequest import CocktailApiRequest
 from lib.builder.CocktailBuilder import CocktailBuilder
 
 
-class RandomCocktailRequest(RandomDrinkRequest):
+class CocktailRequest(DrinkRequest):
 
     def api_call(self):
         return CocktailApiRequest("https://www.thecocktaildb.com/api/json/v1/1/random.php").call_api()

@@ -1,7 +1,8 @@
 from flask import Flask, jsonify
 
-from lib.RandomBeerRequest import RandomBeerRequest
-from lib.RandomCocktailRequest import RandomCocktailRequest
+from lib.drinksRequests.BeerRequest import BeerRequest
+from lib.drinksRequests.CocktailRequest import CocktailRequest
+from lib.suggestion.Suggestion import Suggestion
 
 app = Flask(__name__)
 
@@ -11,13 +12,18 @@ def home():
 
 @app.route('/cocktail')
 def random_cocktail():
-    cocktail = RandomCocktailRequest().get_random()
+    cocktail = CocktailRequest().get_random()
     return jsonify({"cocktail": cocktail.to_dict()}), 200
 
 @app.route('/beer')
 def random_beer():
-    beer = RandomBeerRequest().get_random()
+    beer = BeerRequest().get_random()
     return jsonify({"beer": beer.to_dict()}), 200
+
+@app.route('/suggestion')
+def suggestion():
+    suggestion = Suggestion().get_recommendation()
+    return jsonify({"suggestion": "nice suggestion"}), 200
 
 
 if __name__ == '__main__':

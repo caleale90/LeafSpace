@@ -5,13 +5,12 @@ from lib.builder.CocktailBuilder import CocktailBuilder
 
 class RandomCocktailRequest(RandomDrinkRequest):
 
-    def get_random(self):
-        response = CocktailApiRequest("https://www.thecocktaildb.com/api/json/v1/1/random.php").call_api()
-        return self.build_cocktail(response.json())
+    def api_call(self):
+        return CocktailApiRequest("https://www.thecocktaildb.com/api/json/v1/1/random.php").call_api()
 
-    def build_cocktail(self, data):
-        if "drinks" in data and data["drinks"]:
-            drink = data["drinks"][0]
+    def build_drink(self, response):
+        if "drinks" in response and response["drinks"]:
+            drink = response["drinks"][0]
             name = drink["strDrink"]
             instructions = drink["strInstructions"]
             ingredients = []

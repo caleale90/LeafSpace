@@ -3,11 +3,10 @@ from datetime import datetime, timedelta
 
 class DaytimeCheck:
 
-    @staticmethod
-    def is_daytime(offset_hours):
+    def is_daytime(self, offset_hours):
         current_time = datetime.now()
 
-        new_time = current_time + timedelta(hours=offset_hours)
+        new_time = current_time + self.parse_offset(offset_hours)
 
         daytime_start = new_time.replace(hour=6, minute=0, second=0, microsecond=0)
         daytime_end = new_time.replace(hour=18, minute=0, second=0, microsecond=0)
@@ -16,3 +15,8 @@ class DaytimeCheck:
             return True
         else:
             return False
+
+    def parse_offset(self, offset_str):
+        sign = 1 if offset_str.startswith("+") else -1
+        hours, minutes = map(int, offset_str[1:].split(":"))
+        return timedelta(hours=sign * hours, minutes=sign * minutes)

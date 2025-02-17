@@ -1,10 +1,10 @@
 class DrinkRequest:
 
     def get_random(self):
-        response = self.api_call()
+        response = self.random_api_call()
         return self.build_drink(response.json())
 
-    def api_call(self):
+    def random_api_call(self):
         raise NotImplementedError('Override in sub-classes')
 
     def build_drink(self, response):

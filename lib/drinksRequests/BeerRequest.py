@@ -6,7 +6,7 @@ from lib.builder.BeerBuilder import BeerBuilder
 
 class BeerRequest(DrinkRequest):
 
-    def api_call(self):
+    def random_api_call(self):
         # response = BeerApiRequest("https://api.sampleapis.com/beers/ale").call_api()
         # TODO: rimuovere quando andranno le API e scommentare riga sopra
 

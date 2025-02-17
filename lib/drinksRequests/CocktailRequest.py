@@ -1,12 +1,16 @@
 from lib.drinksRequests.DrinkRequest import DrinkRequest
-from lib.api.CocktailApiRequest import CocktailApiRequest
+from lib.api.CocktailApi import CocktailApi
 from lib.builder.CocktailBuilder import CocktailBuilder
 
 
 class CocktailRequest(DrinkRequest):
 
-    def api_call(self):
-        return CocktailApiRequest("https://www.thecocktaildb.com/api/json/v1/1/random.php").call_api()
+    def search_by_letter(self, letter):
+        response = CocktailApi(f"https://www.thecocktaildb.com/api/json/v1/1/search.php?f={letter}").call_api()
+        return self.build_drink(response.json())
+
+    def random_api_call(self):
+        return CocktailApi("https://www.thecocktaildb.com/api/json/v1/1/random.php").call_api()
 
     def build_drink(self, response):
         if "drinks" in response and response["drinks"]:
@@ -34,3 +38,5 @@ class CocktailRequest(DrinkRequest):
             if ingredient:
                 ingredients.append(f"{measure.strip() if measure else ''} {ingredient}".strip())
                 cocktail_builder.add_ingredient(f"{measure.strip() if measure else ''} {ingredient}".strip())
+
+

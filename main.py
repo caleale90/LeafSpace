@@ -21,9 +21,9 @@ def random_beer():
     return jsonify({"beer": beer.to_dict()}), 200
 
 @app.route('/suggestion')
-def suggestion():
+def get_suggestion():
     suggestion = Suggestion().get_recommendation()
-    return jsonify({"suggestion": "nice suggestion"}), 200
+    return jsonify({"suggestion": suggestion.to_dict()}), 200
 
 
 if __name__ == '__main__':

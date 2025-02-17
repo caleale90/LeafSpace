@@ -8,7 +8,7 @@ from lib.suggestion.SuggestionResponse import SuggestionResponse
 class TestSuggestionResponse(unittest.TestCase):
 
     def test_to_dict_when_no_cocktail_and_beer(self):
-        expected = {'beer': {'no beer it\'s daytime'}, 'cocktail': {'no cocktail found'}}
+        expected = {'beer': 'no beer it\'s daytime', 'cocktail': 'no cocktail found'}
 
         beer = None
         cocktail = None

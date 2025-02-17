@@ -32,7 +32,7 @@ class CocktailRequest(DrinkRequest):
 
             return cocktail_builder.build()
         else:
-            print('No cocktail found. Try again!')
+            return None
 
     @staticmethod
     def can_create_drink(response):

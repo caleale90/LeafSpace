@@ -6,9 +6,10 @@ from lib.userRequests.RandomUser import RandomUser
 
 
 class Suggestion:
-    
-    beer = None
-    cocktail = None
+
+    def __init__(self):
+        self.beer = None
+        self.cocktail = None
 
     def get_recommendation(self):
         user = RandomUser().get()

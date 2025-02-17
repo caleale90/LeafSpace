@@ -10,7 +10,7 @@ def home():
 
 @app.route('/cocktail')
 def random_cocktail():
-    cocktail = RandomCocktailRequest.get_random_cocktail()
+    cocktail = RandomCocktailRequest().get_random_cocktail()
     return jsonify({"cocktail": cocktail.to_dict()}), 200
 
 

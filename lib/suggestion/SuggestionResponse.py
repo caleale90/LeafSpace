@@ -7,5 +7,5 @@ class SuggestionResponse:
     def to_dict(self):
         return {
             "beer": self.beer.to_dict() if self.beer is not None else {},
-            "cocktail": self.cocktail.to_dict()
+            "cocktail": self.cocktail.to_dict() if self.cocktail is not None else {}
         }

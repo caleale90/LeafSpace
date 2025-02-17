@@ -7,19 +7,16 @@ from lib.suggestion.SuggestionResponse import SuggestionResponse
 
 class TestSuggestionResponse(unittest.TestCase):
 
-    def test_to_dict_when_no_beer(self):
-        expected = {"beer": {}, "cocktail": {"name": "name",
-                                             "tagline": "tagline",
-                                             "instructions": "ins",
-                                             "ingredients": "ingredients"}}
+    def test_to_dict_when_no_cocktail_and_beer(self):
+        expected = {"beer": {}, "cocktail": {}}
 
         beer = None
-        cocktail = Cocktail('name', 'tagline', 'ins', 'ingredients')
+        cocktail = None
         result = SuggestionResponse(beer, cocktail).to_dict()
 
         self.assertDictEqual(result, expected)
 
-    def test_to_dict_when_beer(self):
+    def test_to_dict(self):
         expected = {'beer': {'image': 'image',
                              'name': 'name',
                              'price': 8.4,

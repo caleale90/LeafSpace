@@ -17,6 +17,7 @@ class Suggestion:
         if DaytimeCheck().is_daytime(user.get_timeshift()):
             self.beer = BeerRequest().get_random()
 
+        print(f"User first letter: {user.get_first_letter()}")
         self.cocktail = CocktailRequest().search_by_letter(user.get_first_letter())
         return SuggestionResponse(self.beer, self.cocktail)
 

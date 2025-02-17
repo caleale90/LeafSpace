@@ -6,10 +6,9 @@ class RandomCocktailRequest:
 
     def get_random_cocktail(self):
         response = CocktailApiRequest("https://www.thecocktaildb.com/api/json/v1/1/random.php").call_api()
+        return self.build_cocktail(response.json())
 
-        return self.parse_response(response.json())
-
-    def parse_response(self, data):
+    def build_cocktail(self, data):
         if "drinks" in data and data["drinks"]:
             drink = data["drinks"][0]
             name = drink["strDrink"]
@@ -18,7 +17,7 @@ class RandomCocktailRequest:
 
             cocktail_builder = CocktailBuilder().set_name(name).set_instructions(instructions)
 
-            self.extract_ingredients(cocktail_builder, drink, ingredients)
+            self.parse_ingredients(cocktail_builder, drink, ingredients)
 
             tagline = f"Enjoy the classic taste of {name}!"
             cocktail_builder.set_tagline(tagline)
@@ -28,7 +27,7 @@ class RandomCocktailRequest:
             print("No cocktail found. Try again!")
 
     @staticmethod
-    def extract_ingredients(cocktail_builder, drink, ingredients):
+    def parse_ingredients(cocktail_builder, drink, ingredients):
         for i in range(1, 16):
             ingredient = drink.get(f"strIngredient{i}")
             measure = drink.get(f"strMeasure{i}")

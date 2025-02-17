@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "<h1>Benvenuto nella mia app Flask!</h1>"
+    return "<h1>Welcome to the friend bar!</h1>"
 
 @app.route('/cocktail')
 def random_cocktail():

@@ -21,6 +21,19 @@ class TestCocktailRequest(unittest.TestCase):
         self.assertEqual(cocktail, 'a drink')
 
 
+    @patch('lib.drinksRequests.CocktailRequest.CocktailRequest.build_drink', return_value='a drink')
+    @patch('lib.drinksRequests.CocktailRequest.CocktailApi')
+    def test_search_by_letter_strange_char_are_quoted(self, mock_cocktail_api, mock_build_drink):
+        mock_response = MagicMock()
+        mock_response.json.return_value = 'fake_response'
+
+        mock_cocktail_api.return_value.call_api.return_value = mock_response
+
+        CocktailRequest().search_by_letter('ع')
+
+        mock_cocktail_api.assert_called_with('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=%D8%B9')
+
+
     @patch('lib.drinksRequests.CocktailRequest.CocktailApi')
     def test_random_api_call(self, mock_cocktail_api):
 

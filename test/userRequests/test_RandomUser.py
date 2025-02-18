@@ -7,7 +7,7 @@ from lib.userRequests.RandomUser import RandomUser
 
 class TestRandomUser(TestCase):
 
-    @patch('requests.get')  # Mock requests.get
+    @patch('requests.get')
     def test_get(self, mock_get):
         mock_response = {
             "results": [{

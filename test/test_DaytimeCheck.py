@@ -24,4 +24,4 @@ class TestDaytimeCheck(unittest.TestCase):
 
         self.assertEqual(checker.parse_offset("+3:30"), timedelta(hours=3, minutes=30))
         self.assertEqual(checker.parse_offset("-5:45"), timedelta(hours=-5, minutes=-45))
-        self.assertEqual(checker.parse_offset("+0:00"), timedelta(hours=0, minutes=0))
+        self.assertEqual(checker.parse_offset("0:00"), timedelta(hours=0, minutes=0))

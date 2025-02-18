@@ -19,6 +19,9 @@ class DaytimeCheck:
     @staticmethod
     def parse_offset(offset_str):
         print(offset_str)
+        if offset_str == "0:00":
+            return timedelta()
+
         sign = 1 if offset_str.startswith("+") else -1
         hours, minutes = map(int, offset_str[1:].split(":"))
         return timedelta(hours=sign * hours, minutes=sign * minutes)

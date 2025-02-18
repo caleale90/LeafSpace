@@ -44,7 +44,7 @@ class TestSuggestion(unittest.TestCase):
     @patch("lib.suggestion.Suggestion.BeerRequest")
     @patch("lib.suggestion.Suggestion.CocktailRequest")
     @patch("lib.suggestion.Suggestion.DaytimeCheck")
-    def test_get_recommendation_on_daytime(self, mock_daytime_check, mock_cocktail_request, mock_beer_request,
+    def test_get_recommendation_on_nighttime(self, mock_daytime_check, mock_cocktail_request, mock_beer_request,
                                            mock_random_user):
         mock_user = MagicMock()
         mock_user.get_timeshift.return_value = "+2:00"

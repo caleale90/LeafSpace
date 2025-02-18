@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return '<h1>Welcome to the friend bar!</h1>'
+    return jsonify({'response': 'Welcome to the friend bar!'})
 
 @app.route('/cocktail')
 def random_cocktail():

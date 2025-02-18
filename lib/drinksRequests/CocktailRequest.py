@@ -15,7 +15,6 @@ class CocktailRequest(DrinkRequest):
         return CocktailApi('https://www.thecocktaildb.com/api/json/v1/1/random.php').call_api()
 
     def build_drink(self, response):
-        print(response)
         if self.can_create_drink(response):
             drink = response['drinks'][0]
             name = drink['strDrink']

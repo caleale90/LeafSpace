@@ -18,7 +18,6 @@ class DaytimeCheck:
 
     @staticmethod
     def parse_offset(offset_str):
-        print(offset_str)
         if offset_str == "0:00":
             return timedelta()
 

@@ -23,11 +23,11 @@ class TestBeerBuilder(unittest.TestCase):
 
         with self.assertRaises(ValueError) as context:
             builder.set_tagline('tagline').build()
-        self.assertEqual(str(context.exception), 'Name and price are required for a beer')
+        self.assertEqual(str(context.exception), 'Name and tagline are required for a beer')
 
     def test_beer_builder_on_missing_price(self):
         builder = BeerBuilder()
 
         with self.assertRaises(ValueError) as context:
             builder.set_name('IPA').build()
-        self.assertEqual(str(context.exception), 'Name and price are required for a beer')
+        self.assertEqual(str(context.exception), 'Name and tagline are required for a beer')

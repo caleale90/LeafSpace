@@ -6,7 +6,7 @@ from lib.drinksRequests.DrinkRequest import DrinkRequest
 class BeerRequest(DrinkRequest):
 
     def random_api_call(self):
-        return BeerApi('https://punkapi.online/v3/beers/random').call_api()
+        return BeerApi('/random').call_api()
 
     def build_drink(self, response):
         name = response['name']

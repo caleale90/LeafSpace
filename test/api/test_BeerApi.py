@@ -7,8 +7,8 @@ class TestBeerApi(unittest.TestCase):
 
     @patch.object(Api, '__init__', return_value=None)
     def test_beer_api_initialization(self, mock_api_init):
-        base_url = "https://beerapi.com"
-        beer_api = BeerApi(base_url)
+        endpoint = "/endpoint"
+        beer_api = BeerApi(endpoint)
 
-        mock_api_init.assert_called_once_with(base_url)
+        mock_api_init.assert_called_once_with('https://punkapi.online/v3/beers/endpoint')
         self.assertIsInstance(beer_api, BeerApi)

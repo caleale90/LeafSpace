@@ -6,14 +6,14 @@ class DrinkRequest:
         return self.build_drink(response.json())
 
     def search_by_letter(self, letter):
-        response = self.search_by_letter_call()
+        response = self.search_by_letter_call(letter)
         print(response.json())
         return self.build_drink(response.json())
 
     def random_api_call(self):
         raise NotImplementedError('Override in sub-classes')
 
-    def search_by_letter_call(self):
+    def search_by_letter_call(self, letter):
         raise NotImplementedError('Override in sub-classes')
 
     def build_drink(self, response):

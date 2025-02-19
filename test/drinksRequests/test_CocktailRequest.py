@@ -6,35 +6,30 @@ from lib.drinksRequests.CocktailRequest import CocktailRequest
 
 class TestCocktailRequest(unittest.TestCase):
 
-    @patch('lib.drinksRequests.CocktailRequest.CocktailApi.call_api', return_value='api response')
-    def test_search_by_letter(self, mock_cocktail_call_api):
-        api_response = CocktailRequest().search_by_letter('M')
+    @patch('lib.drinksRequests.CocktailRequest.CocktailApi')
+    def test_search_by_letter_call(self, mock_cocktail_api):
+        mock_cocktail_api.return_value.call_api.return_value = 'api response'
+
+        api_response = CocktailRequest().search_by_letter_call('M')
 
         self.assertEqual(api_response, 'api response')
-        mock_cocktail_call_api.assert_called()
+        mock_cocktail_api.assert_called_with('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=M')
 
 
-    @patch('lib.drinksRequests.CocktailRequest.CocktailRequest.build_drink', return_value='a drink')
     @patch('lib.drinksRequests.CocktailRequest.CocktailApi')
-    def test_search_by_letter_strange_char_are_quoted(self, mock_cocktail_api, mock_build_drink):
-        mock_response = MagicMock()
-        mock_response.json.return_value = 'fake_response'
-
-        mock_cocktail_api.return_value.call_api.return_value = mock_response
-
-        CocktailRequest().search_by_letter('ع')
+    def test_search_by_letter_call_strange_char_are_quoted(self, mock_cocktail_api):
+        CocktailRequest().search_by_letter_call('ع')
 
         mock_cocktail_api.assert_called_with('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=%D8%B9')
 
 
     @patch('lib.drinksRequests.CocktailRequest.CocktailApi')
     def test_random_api_call(self, mock_cocktail_api):
-
         mock_cocktail_api.return_value.call_api.return_value = 'fake_response'
 
-        cocktail_request = CocktailRequest()
+        cocktail_response = CocktailRequest().random_api_call()
 
-        self.assertEqual(cocktail_request.random_api_call(), 'fake_response')
+        self.assertEqual(cocktail_response, 'fake_response')
 
 
     @patch('lib.drinksRequests.CocktailRequest.CocktailRequest.can_create_drink', return_value=False)

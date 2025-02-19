@@ -1,12 +1,13 @@
 class DrinkRequest:
 
     def get_random(self):
-        response = self.random_api_call()
-        print(response.json())
-        return self.build_drink(response.json())
+        return self.perform(self.random_api_call)
 
     def search_by_letter(self, letter):
-        response = self.search_by_letter_call(letter)
+        return self.perform(self.search_by_letter_call, letter)
+
+    def perform(self, api_call_fn, *args, **kwargs):
+        response = api_call_fn(*args, **kwargs)
         print(response.json())
         return self.build_drink(response.json())
 

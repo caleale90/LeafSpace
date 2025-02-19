@@ -9,8 +9,8 @@ class TestCocktailApi(unittest.TestCase):
 
     @patch.object(Api, '__init__', return_value=None)
     def test_cocktail_api_initialization(self, mock_api_init):
-        base_url = "https://cocktailapi.com"
+        base_url = "/endpoint"
         beer_api = CocktailApi(base_url)
 
-        mock_api_init.assert_called_once_with(base_url)
+        mock_api_init.assert_called_once_with('https://www.thecocktaildb.com/api/json/v1/1/endpoint')
         self.assertIsInstance(beer_api, CocktailApi)

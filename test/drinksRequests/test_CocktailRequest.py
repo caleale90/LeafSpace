@@ -13,15 +13,13 @@ class TestCocktailRequest(unittest.TestCase):
         api_response = CocktailRequest().search_by_letter_call('M')
 
         self.assertEqual(api_response, 'api response')
-        mock_cocktail_api.assert_called_with('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=M')
-
+        mock_cocktail_api.assert_called_with('/search.php?f=M')
 
     @patch('lib.drinksRequests.CocktailRequest.CocktailApi')
     def test_search_by_letter_call_strange_char_are_quoted(self, mock_cocktail_api):
         CocktailRequest().search_by_letter_call('ع')
 
-        mock_cocktail_api.assert_called_with('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=%D8%B9')
-
+        mock_cocktail_api.assert_called_with('/search.php?f=%D8%B9')
 
     @patch('lib.drinksRequests.CocktailRequest.CocktailApi')
     def test_random_api_call(self, mock_cocktail_api):
@@ -30,7 +28,6 @@ class TestCocktailRequest(unittest.TestCase):
         cocktail_response = CocktailRequest().random_api_call()
 
         self.assertEqual(cocktail_response, 'fake_response')
-
 
     @patch('lib.drinksRequests.CocktailRequest.CocktailRequest.can_create_drink', return_value=False)
     @patch('lib.drinksRequests.CocktailRequest.CocktailBuilder')

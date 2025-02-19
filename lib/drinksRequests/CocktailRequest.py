@@ -8,8 +8,7 @@ from lib.builder.CocktailBuilder import CocktailBuilder
 class CocktailRequest(DrinkRequest):
 
     def search_by_letter(self, letter):
-        response = CocktailApi(f'https://www.thecocktaildb.com/api/json/v1/1/search.php?f={quote(letter)}').call_api()
-        return self.build_drink(response.json())
+        return CocktailApi(f'https://www.thecocktaildb.com/api/json/v1/1/search.php?f={quote(letter)}').call_api()
 
     def random_api_call(self):
         return CocktailApi('https://www.thecocktaildb.com/api/json/v1/1/random.php').call_api()

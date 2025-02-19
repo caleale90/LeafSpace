@@ -6,19 +6,12 @@ from lib.drinksRequests.CocktailRequest import CocktailRequest
 
 class TestCocktailRequest(unittest.TestCase):
 
-    @patch('lib.drinksRequests.CocktailRequest.CocktailRequest.build_drink', return_value='a drink')
-    @patch('lib.drinksRequests.CocktailRequest.CocktailApi')
-    def test_search_by_letter(self, mock_cocktail_api, mock_build_drink):
-        mock_response = MagicMock()
-        mock_response.json.return_value = 'fake_response'
+    @patch('lib.drinksRequests.CocktailRequest.CocktailApi.call_api', return_value='api response')
+    def test_search_by_letter(self, mock_cocktail_call_api):
+        api_response = CocktailRequest().search_by_letter('M')
 
-        mock_cocktail_api.return_value.call_api.return_value = mock_response
-
-        cocktail = CocktailRequest().search_by_letter('M')
-
-        mock_cocktail_api.assert_called_with('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=M')
-        mock_build_drink.assert_called_with('fake_response')
-        self.assertEqual(cocktail, 'a drink')
+        self.assertEqual(api_response, 'api response')
+        mock_cocktail_call_api.assert_called()
 
 
     @patch('lib.drinksRequests.CocktailRequest.CocktailRequest.build_drink', return_value='a drink')
